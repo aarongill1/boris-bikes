@@ -8,12 +8,21 @@ class DockingStation
   end
 
   def release_bike
-    fail 'No bikes available' unless @bikes_docked.any?
+    empty?
     @bikes_docked.pop
   end
 
   def dock(bike)
-    fail 'Docking station unavailable' if @bikes_docked.length >= 20
+    full?
     @bikes_docked << bike
+  end
+
+  private
+  def full?
+    fail 'Docking station unavailable' if @bikes_docked.length >= 20
+  end
+
+  def empty?
+    fail 'No bikes available' unless @bikes_docked.any?
   end
 end
