@@ -9,6 +9,13 @@ describe DockingStation do
      bike = Bike.new
      expect(subject.dock(bike)).to include bike
    end
+   it 'has specified capacity' do
+      docking_station = DockingStation.new(1)
+      bike = Bike.new
+      expect(docking_station.dock(bike)).to include bike
+      #issue in line 17
+      expect{docking_station.dock(Bike.new)}.to raise_error 'Docking station unavailable'
+   end
 
    describe '#release_bike' do
      it 'docking station releases bike' do
@@ -21,7 +28,8 @@ describe DockingStation do
      end
      describe '#dock' do
        it 'raises an error when the docking station is full' do
-         DockingStation::DEFAULT_CAPACITY.times {subject.dock(Bike.new)}
+         capacity = 20
+         capacity.times {subject.dock(Bike.new)}
          expect { subject.dock Bike.new }.to raise_error 'Docking station unavailable'
        end
      end
