@@ -9,6 +9,7 @@ class DockingStation
   end
 
   def dock(bike)
+    fail 'Docking station unavailable' if @bike
     @bike = bike
   end
 
