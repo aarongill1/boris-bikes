@@ -1,10 +1,6 @@
 require 'Docking_Station'
 
 describe DockingStation do
-   it 'checks bike is working' do
-     bike = Bike.new
-     expect(bike.working?).to equal(true)
-   end
    it 'docks the bike' do
      bike = Bike.new
      expect(subject.dock(bike)).to include bike
@@ -31,5 +27,5 @@ describe DockingStation do
      it 'raises and error when there are no bikes available' do
       expect { subject.release_bike }.to raise_error 'No bikes available'
      end
-end
+  end
 end
