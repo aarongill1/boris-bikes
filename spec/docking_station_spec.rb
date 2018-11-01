@@ -1,7 +1,7 @@
 require 'Docking_Station'
 
 describe DockingStation do
-   it 'docking station releases bike' do
+   it 'checks bike is working' do
      bike = Bike.new
      expect(bike.working?).to equal(true)
    end
@@ -15,7 +15,7 @@ describe DockingStation do
       expect(docking_station.dock(bike)).to include bike
       expect{docking_station.dock(Bike.new)}.to raise_error 'Docking station unavailable'
    end
-   it 'has no specified capacity and uses default, set at 20' do
+   it 'has no specified capacity and uses default value' do
      docking_station = DockingStation.new
      bike = Bike.new
      DockingStation::DEFAULT_CAPACITY.times { docking_station.dock(Bike.new)}
