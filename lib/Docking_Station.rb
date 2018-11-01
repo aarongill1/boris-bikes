@@ -11,7 +11,8 @@ class DockingStation
   end
 
   def release_bike
-    empty?
+    working_bikes?
+    @bikes_docked.rotate! until @bikes_docked[-1].working?
     @bikes_docked.pop
   end
 
@@ -25,7 +26,7 @@ class DockingStation
     fail 'Docking station unavailable' if @bikes_docked.length >= @capacity
   end
 
-  def empty?
-    fail 'No bikes available' unless @bikes_docked.any?
+  def working_bikes?
+    fail 'No working bikes available' unless @bikes_docked.any? { |bike| bike.working? }
   end
 end
